@@ -1,12 +1,18 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+def readDetails(filepath):
+    with open(filepath, 'r') as f:
+        return [line for line in f]
 
 
 # Make a homepage
 @app.route('/' )
 def homepage():
-    return render_template('homepage.html')
+    aboutMe = readDetails("static/AboutMe.txt")
+    return render_template('homepage.html',aboutMe=aboutMe)
+
+
 
     
 
